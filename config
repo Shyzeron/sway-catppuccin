@@ -1,0 +1,190 @@
+# ══════════════════════════════════════════════════════════════════
+#  Sway config — Catppuccin Mocha
+#  Автозапуск
+# ══════════════════════════════════════════════════════════════════
+exec_always autotiling
+exec_always pkill -x mako; mako
+exec_always pkill -x wl-paste; wl-paste --watch cliphist store
+exec_always pkill -x wlsunset; wlsunset -l 55.75 -L 37.62
+exec_always killall -q waybar; sleep 0.5 && waybar
+
+# ══════════════════════════════════════════════════════════════════
+#  Переменные
+# ══════════════════════════════════════════════════════════════════
+set $mod Mod4
+set $left h
+set $down j
+set $up k
+set $right l
+set $term foot -e ~/.config/sway/term.sh
+set $menu fuzzel
+
+# ══════════════════════════════════════════════════════════════════
+#  Внешний вид
+# ══════════════════════════════════════════════════════════════════
+default_border pixel 2
+titlebar_border_thickness 0
+
+
+# Отступы — по умолчанию выключены
+gaps inner 0
+gaps outer 0
+smart_gaps on
+smart_borders on
+
+# $mod+G — переключить отступы
+bindsym --to-code $mod+g exec ~/.config/sway/gaps-toggle.shr current set 0 && swaymsg gaps outer current set 0 && notify-send "Gaps" "Отступы выключены"; \
+    fi
+
+# Цвета рамок (Catppuccin Mocha)
+# class                 border    bg        text      indicator child_border
+client.focused          #B4BEFE   #1E1E2E   #CDD6F4   #B4BEFE   #B4BEFE
+client.focused_inactive #45475A   #1E1E2E   #CDD6F4   #45475A   #45475A
+client.unfocused        #313244   #1E1E2E   #6C7086   #313244   #313244
+client.urgent           #F38BA8   #1E1E2E   #CDD6F4   #F38BA8   #F38BA8
+
+# ══════════════════════════════════════════════════════════════════
+#  Мониторы (поменяй под свои)
+# ══════════════════════════════════════════════════════════════════
+output DP-1 {
+    mode 2560x1440@180Hz
+    position 0,0
+    bg #1E1E2E solid_color
+}
+
+output HDMI-A-1 {
+    mode 1920x1080@60Hz
+    position -1920,0
+    bg #11111B solid_color
+}
+
+output * bg /usr/share/backgrounds/sway/Sway_Wallpaper_Blue_1920x1080.png fill
+
+# ══════════════════════════════════════════════════════════════════
+#  Ввод
+# ══════════════════════════════════════════════════════════════════
+input type:keyboard {
+    xkb_layout "us,ru"
+    xkb_options grp:alt_shift_toggle
+}
+
+# ══════════════════════════════════════════════════════════════════
+#  Хоткеи — основные
+# ══════════════════════════════════════════════════════════════════
+bindsym --to-code $mod+Return exec $term
+bindsym --to-code $mod+q kill
+bindsym --to-code $mod+d exec $menu
+bindsym --to-code $mod+e exec thunar
+floating_modifier $mod normal
+bindsym --to-code $mod+Shift+c reload
+bindsym --to-code $mod+Shift+e exec swaynag -t warning -m 'Выйти из sway?' -B 'Да, выйти' 'swaymsg exit'
+
+# ══════════════════════════════════════════════════════════════════
+#  Навигация по окнам
+# ══════════════════════════════════════════════════════════════════
+bindsym --to-code $mod+$left focus left
+bindsym --to-code $mod+$down focus down
+bindsym --to-code $mod+$up focus up
+bindsym --to-code $mod+$right focus right
+bindsym --to-code $mod+Left focus left
+bindsym --to-code $mod+Down focus down
+bindsym --to-code $mod+Up focus up
+bindsym --to-code $mod+Right focus right
+
+bindsym --to-code $mod+Shift+$left move left
+bindsym --to-code $mod+Shift+$down move down
+bindsym --to-code $mod+Shift+$up move up
+bindsym --to-code $mod+Shift+$right move right
+bindsym --to-code $mod+Shift+Left move left
+bindsym --to-code $mod+Shift+Down move down
+bindsym --to-code $mod+Shift+Up move up
+bindsym --to-code $mod+Shift+Right move right
+
+# ══════════════════════════════════════════════════════════════════
+#  Воркспейсы
+# ══════════════════════════════════════════════════════════════════
+bindsym --to-code $mod+1 workspace number 1
+bindsym --to-code $mod+2 workspace number 2
+bindsym --to-code $mod+3 workspace number 3
+bindsym --to-code $mod+4 workspace number 4
+bindsym --to-code $mod+5 workspace number 5
+bindsym --to-code $mod+6 workspace number 6
+bindsym --to-code $mod+7 workspace number 7
+bindsym --to-code $mod+8 workspace number 8
+bindsym --to-code $mod+9 workspace number 9
+bindsym --to-code $mod+0 workspace number 10
+
+bindsym --to-code $mod+Shift+1 move container to workspace number 1
+bindsym --to-code $mod+Shift+2 move container to workspace number 2
+bindsym --to-code $mod+Shift+3 move container to workspace number 3
+bindsym --to-code $mod+Shift+4 move container to workspace number 4
+bindsym --to-code $mod+Shift+5 move container to workspace number 5
+bindsym --to-code $mod+Shift+6 move container to workspace number 6
+bindsym --to-code $mod+Shift+7 move container to workspace number 7
+bindsym --to-code $mod+Shift+8 move container to workspace number 8
+bindsym --to-code $mod+Shift+9 move container to workspace number 9
+bindsym --to-code $mod+Shift+0 move container to workspace number 10
+
+# ══════════════════════════════════════════════════════════════════
+#  Раскладка окон
+# ══════════════════════════════════════════════════════════════════
+bindsym --to-code $mod+b splith
+bindsym --to-code $mod+v splitv
+bindsym --to-code $mod+s layout stacking
+bindsym --to-code $mod+w layout tabbed
+bindsym --to-code $mod+t layout toggle split
+bindsym --to-code $mod+f fullscreen
+bindsym --to-code $mod+Shift+space floating toggle
+bindsym --to-code $mod+space focus mode_toggle
+bindsym --to-code $mod+a focus parent
+
+# ══════════════════════════════════════════════════════════════════
+#  Scratchpad
+# ══════════════════════════════════════════════════════════════════
+bindsym --to-code $mod+Shift+minus move scratchpad
+bindsym --to-code $mod+minus scratchpad show
+
+# ══════════════════════════════════════════════════════════════════
+#  Режим изменения размера
+# ══════════════════════════════════════════════════════════════════
+mode "resize" {
+    bindsym --to-code $left resize shrink width 10px
+    bindsym --to-code $down resize grow height 10px
+    bindsym --to-code $up resize shrink height 10px
+    bindsym --to-code $right resize grow width 10px
+    bindsym --to-code Left resize shrink width 10px
+    bindsym --to-code Down resize grow height 10px
+    bindsym --to-code Up resize shrink height 10px
+    bindsym --to-code Right resize grow width 10px
+    bindsym --to-code Return mode "default"
+    bindsym --to-code Escape mode "default"
+}
+bindsym --to-code $mod+r mode "resize"
+
+# ══════════════════════════════════════════════════════════════════
+#  Медиа и система
+# ══════════════════════════════════════════════════════════════════
+bindsym --locked --to-code XF86AudioMute exec pactl set-sink-mute @DEFAULT_SINK@ toggle
+bindsym --locked --to-code XF86AudioLowerVolume exec pactl set-sink-volume @DEFAULT_SINK@ -5%
+bindsym --locked --to-code XF86AudioRaiseVolume exec pactl set-sink-volume @DEFAULT_SINK@ +5%
+bindsym --locked --to-code XF86AudioMicMute exec pactl set-source-mute @DEFAULT_SOURCE@ toggle
+bindsym --locked --to-code XF86MonBrightnessDown exec brightnessctl set 5%-
+bindsym --locked --to-code XF86MonBrightnessUp exec brightnessctl set 5%+
+
+# ══════════════════════════════════════════════════════════════════
+#  Скриншоты
+#  Print       — выделить область мышью → файл + буфер обмена
+#  Shift+Print — текущий монитор → файл + буфер обмена
+#  Ctrl+Print  — активное окно → файл + буфер обмена
+# ══════════════════════════════════════════════════════════════════
+bindsym --to-code Print exec mkdir -p $HOME/Pictures/Screenshots && grim -g "$(slurp -d)" - | tee "$HOME/Pictures/Screenshots/$(date +%Y-%m-%d_%H-%M-%S).png" | wl-copy && notify-send -i camera "Screenshot" "Область сохранена"
+bindsym --to-code Shift+Print exec mkdir -p $HOME/Pictures/Screenshots && grim -o "$(swaymsg -t get_outputs | python3 -c "import sys,json; outputs=[o for o in json.load(sys.stdin) if o['focused']]; print(outputs[0]['name'] if outputs else 'DP-1')")" - | tee "$HOME/Pictures/Screenshots/$(date +%Y-%m-%d_%H-%M-%S)_monitor.png" | wl-copy && notify-send -i camera "Screenshot" "Монитор сохранён"
+bindsym --to-code Ctrl+Print exec mkdir -p $HOME/Pictures/Screenshots && grim -g "$(swaymsg -t get_tree | python3 -c "import sys,json; nodes=[n for o in json.load(sys.stdin)['nodes'] for w in o.get('nodes',[]) for n in w.get('nodes',[]) if n.get('focused')]; r=nodes[0]['rect']; print(f\"{r['x']},{r['y']} {r['width']}x{r['height']}\")")" - | tee "$HOME/Pictures/Screenshots/$(date +%Y-%m-%d_%H-%M-%S)_window.png" | wl-copy && notify-send -i camera "Screenshot" "Окно сохранено"
+
+# ══════════════════════════════════════════════════════════════════
+#  Утилиты
+# ══════════════════════════════════════════════════════════════════
+bindsym --to-code $mod+Shift+v exec cliphist list | fuzzel --dmenu | cliphist decode | wl-copy
+bindsym --to-code $mod+Shift+b exec pkill -SIGUSR1 waybar
+
+include /etc/sway/config.d/*

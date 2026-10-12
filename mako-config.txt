@@ -1,0 +1,57 @@
+# ~/.config/mako/config
+# Catppuccin Mocha — под тему sway/waybar
+
+# ── Позиция ───────────────────────────────────────────────────────
+layer=overlay
+anchor=top-right
+margin=10
+padding=12,16
+
+# ── Размер ────────────────────────────────────────────────────────
+width=340
+height=120
+max-visible=5
+
+# ── Время показа (мс) ─────────────────────────────────────────────
+default-timeout=5000
+ignore-timeout=0
+
+# ── Шрифт ─────────────────────────────────────────────────────────
+font=JetBrainsMono Nerd Font 12
+
+# ── Цвета (Catppuccin Mocha) ──────────────────────────────────────
+background-color=#1E1E2Eee
+text-color=#CDD6F4ff
+border-color=#585B70ff
+progress-color=over #313244ff
+
+# ── Скругление и рамка ───────────────────────────────────────────
+border-size=2
+border-radius=10
+
+# ── Иконки ───────────────────────────────────────────────────────
+icons=1
+icon-location=left
+icon-path=/usr/share/icons/Papirus-Dark
+
+# ── Действия по клику ────────────────────────────────────────────
+on-notify=none
+on-button-left=dismiss
+on-button-right=dismiss-all
+on-button-middle=none
+
+# ── Urgency: low (тихие уведомления) ────────────────────────────
+[urgency=low]
+border-color=#45475Aff
+default-timeout=3000
+
+# ── Urgency: normal ───────────────────────────────────────────────
+[urgency=normal]
+border-color=#585B70ff
+
+# ── Urgency: critical (важные) ────────────────────────────────────
+[urgency=critical]
+background-color=#1E1E2Eee
+border-color=#F38BA8ff
+text-color=#F38BA8ff
+default-timeout=0

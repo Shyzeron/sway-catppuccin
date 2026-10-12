@@ -1,0 +1,160 @@
+{
+    "layer": "top",
+    "position": "top",
+    "height": 32,
+    "spacing": 4,
+    "margin-top": 6,
+    "margin-left": 8,
+    "margin-right": 8,
+    "modules-left": [
+        "custom/distro",
+        "sway/workspaces",
+        "sway/mode",
+        "sway/window"
+    ],
+    "modules-center": [
+        "clock"
+    ],
+    "modules-right": [
+        "cpu",
+        "memory",
+        "custom/gpu",
+        "pulseaudio",
+        "pulseaudio#microphone",
+        "bluetooth",
+        "network",
+        "sway/language",
+        "tray"
+    ],
+
+    // ── Дистрибутив ──────────────────────────────────────────────────────
+    "custom/distro": {
+        "exec": "~/.config/waybar/scripts/distro.sh",
+        "return-type": "json",
+        "format": "{}",
+        "interval": "once"
+    },
+
+        // ── Workspaces (clickable, like qtile) ──────────────────────────────
+    "sway/workspaces": {
+        "disable-scroll": false,
+        "all-outputs": true,
+        "format": "{name}",
+        "on-click": "activate",
+        "sort-by-number": true,
+        "persistent-workspaces": {
+            "1": [], "2": [], "3": [], "4": [], "5": [],
+            "6": [], "7": [], "8": [], "9": [], "10": []
+        }
+    },
+
+    "sway/mode": {
+        "format": "<span style=\"italic\">{}</span>"
+    },
+
+
+    // ── Название окна ────────────────────────────────────────────────────
+    "sway/window": {
+        "max-length": 50,
+        "ellipsis": "…:",
+        "tooltip": true
+    },
+
+    // ── Clock ────────────────────────────────────────────────────────────
+    "clock": {
+        "format": "{:%H:%M  %d·%m·%y}",
+        "interval": 60,
+        "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>"
+    },
+
+    // ── CPU ──────────────────────────────────────────────────────────────
+    "cpu": {
+        "interval": 2,
+        "format": "󰻠 {usage}%",
+        "tooltip": true,
+        "on-click": "foot -e htop"
+    },
+
+    // ── RAM ──────────────────────────────────────────────────────────────
+    "memory": {
+        "interval": 2,
+        "format": "󰍛 {used:0.1f}G / {total:0.1f}G",
+        "tooltip-format": "Used: {used:0.2f}G\nAvailable: {avail:0.2f}G\nTotal: {total:0.2f}G",
+        "on-click": "foot -e htop"
+    },
+
+    // ── GPU (AMD/Intel: reads /sys; NVIDIA: nvidia-smi) ──────────────────
+    // For NVIDIA: change exec to the nvidia-smi variant below
+    "custom/gpu": {
+        "interval": 2,
+        "return-type": "json",
+        "exec": "~/.config/waybar/scripts/gpu.sh",
+        "tooltip": true,
+        "on-click": "foot -e htop"
+    },
+
+    // ── Volume (PulseAudio / PipeWire-pulse) ─────────────────────────────
+    "pulseaudio": {
+        "format": "{icon} {volume}%",
+        "format-muted": "󰝟 muted",
+        "format-icons": {
+            "default": ["󰕿", "󰖀", "󰕾"]
+        },
+        "scroll-step": 5,
+        "on-click": "pactl set-sink-mute @DEFAULT_SINK@ toggle",
+        "on-scroll-up": "pactl set-sink-volume @DEFAULT_SINK@ +5%",
+        "on-scroll-down": "pactl set-sink-volume @DEFAULT_SINK@ -5%",
+        "on-click-right": "pavucontrol --tab=1",
+        "tooltip-format": "{desc} — {volume}%",
+        "smooth-scrolling-threshold": 1
+    },
+
+
+    // ── Микрофон ─────────────────────────────────────────────────────────
+    "pulseaudio#microphone": {
+        "format": "{format_source}",
+        "format-source": "󰍬 {volume}%",
+        "format-source-muted": "󰍭",
+        "on-click": "pactl set-source-mute @DEFAULT_SOURCE@ toggle",
+        "on-scroll-up": "pactl set-source-volume @DEFAULT_SOURCE@ +5%",
+        "on-scroll-down": "pactl set-source-volume @DEFAULT_SOURCE@ -5%",
+        "on-click-right": "pavucontrol --tab=2",
+        "tooltip-format": "{source_desc} — {source_volume}%",
+        "scroll-step": 5
+    },
+
+    // ── Bluetooth ─────────────────────────────────────────────────────────
+    "bluetooth": {
+        "format": "󰂯",
+        "format-connected": "󰂱",
+        "format-connected-battery": "󰂱 {device_battery_percentage}%",
+        "tooltip-format": "{controller_alias} — {controller_address}",
+        "tooltip-format-connected": "{controller_alias}\n\n{device_enumerate}",
+        "tooltip-format-enumerate-connected": "{device_alias} — {device_address}",
+        "on-click": "blueman-manager"
+    },
+
+    // ── Сеть ─────────────────────────────────────────────────────────────
+    "network": {
+        "format-wifi": "󰤨",
+        "format-ethernet": "󰈀",
+        "format-disconnected": "󰤭",
+        "tooltip-format-wifi": "{essid} — {signalStrength}%\nIP: {ipaddr}",
+        "tooltip-format-ethernet": "{ifname}\nIP: {ipaddr}",
+        "tooltip-format-disconnected": "Нет подключения",
+        "on-click": "nm-connection-editor",
+        "interval": 5
+    },
+
+        // ── Раскладка клавиатуры ─────────────────────────────────────────────
+    "sway/language": {
+        "format": "⌨ {}",
+        "min-length": 5,
+        "tooltip": false
+    },
+
+        // ── Tray ─────────────────────────────────────────────────────────────
+    "tray": {
+        "spacing": 8
+    }
+}

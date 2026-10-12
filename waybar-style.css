@@ -1,0 +1,218 @@
+/* Catppuccin Mocha palette (matches your sway bg colors) */
+@define-color base   #1E1E2E;
+@define-color mantle #181825;
+@define-color crust  #11111B;
+@define-color surface0 #313244;
+@define-color surface1 #45475A;
+@define-color overlay0 #6C7086;
+@define-color text   #CDD6F4;
+@define-color subtext1 #BAC2DE;
+@define-color blue   #89B4FA;
+@define-color lavender #B4BEFE;
+@define-color green  #A6E3A1;
+@define-color yellow #F9E2AF;
+@define-color red    #F38BA8;
+@define-color peach  #FAB387;
+@define-color mauve  #CBA6F7;
+@define-color teal   #94E2D5;
+
+* {
+    font-family: "JetBrainsMono Nerd Font", "Noto Sans", monospace;
+    font-size: 13px;
+    min-height: 0;
+    border: none;
+    border-radius: 0;
+    box-shadow: none;
+}
+
+window#waybar {
+    background-color: alpha(@base, 0.85);
+    color: @text;
+    border: 2px solid @surface1;
+    border-radius: 10px;
+}
+
+/* ── Дистрибутив ─────────────────────────────────────────────────── */
+#custom-distro {
+    font-family: "JetBrainsMono Nerd Font";
+    color: @blue;
+    font-size: 18px;
+    padding: 0 12px 0 8px;
+    background: transparent;
+}
+
+/* ── Workspaces ──────────────────────────────────────── */
+#workspaces {
+    margin: 0 4px;
+    padding: 0;
+}
+
+#workspaces button {
+    padding: 0 10px;
+    color: @subtext1;
+    background: transparent;
+    border-bottom: 2px solid transparent;
+    transition: all 0.15s ease;
+}
+
+#workspaces button:hover {
+    background: @surface0;
+    color: @text;
+}
+
+#workspaces button.focused,
+#workspaces button.active {
+    color: @blue;
+    border-bottom: 2px solid @blue;
+    background: @surface0;
+}
+
+#workspaces button.urgent {
+    color: @red;
+    border-bottom: 2px solid @red;
+}
+
+/* ── Mode ────────────────────────────────────────────── */
+#mode {
+    padding: 0 10px;
+    color: @yellow;
+    background: @surface0;
+}
+
+
+/* ── Название окна ───────────────────────────────────────────────── */
+#window {
+    color: @subtext1;
+    font-style: italic;
+    padding: 0 12px;
+    background: transparent;
+}
+
+/* ── Clock ───────────────────────────────────────────── */
+#clock {
+    padding: 0 12px;
+    color: @lavender;
+    font-weight: bold;
+}
+
+/* ── Shared module style ─────────────────────────────── */
+#cpu,
+#memory,
+#custom-gpu,
+#pulseaudio,
+#tray {
+    padding: 0 10px;
+    color: @text;
+    background: @mantle;
+    margin: 4px 2px;
+    border-radius: 6px;
+}
+
+/* ── CPU ─────────────────────────────────────────────── */
+#cpu {
+    color: @green;
+}
+
+#cpu.warning {
+    color: @yellow;
+}
+
+#cpu.critical {
+    color: @red;
+}
+
+/* ── RAM ─────────────────────────────────────────────── */
+#memory {
+    color: @teal;
+}
+
+#memory.warning {
+    color: @yellow;
+}
+
+#memory.critical {
+    color: @red;
+}
+
+/* ── GPU ─────────────────────────────────────────────── */
+#custom-gpu {
+    color: @mauve;
+}
+
+/* ── Volume ──────────────────────────────────────────── */
+#pulseaudio {
+    color: @blue;
+}
+
+#pulseaudio.muted {
+    color: @overlay0;
+}
+
+/* ── Микрофон ────────────────────────────────────────────────────── */
+#pulseaudio.microphone {
+    color: @mauve;
+}
+
+#pulseaudio.microphone.source-muted {
+    color: @overlay0;
+}
+
+/* ── Bluetooth ───────────────────────────────────────────────────── */
+#bluetooth {
+    color: @blue;
+    padding: 0 10px;
+    background: @mantle;
+    margin: 4px 2px;
+    border-radius: 6px;
+}
+
+#bluetooth.connected {
+    color: @teal;
+}
+
+#bluetooth.disabled {
+    color: @overlay0;
+}
+
+/* ── Сеть ────────────────────────────────────────────────────────── */
+#network {
+    color: @green;
+    padding: 0 10px;
+    background: @mantle;
+    margin: 4px 2px;
+    border-radius: 6px;
+}
+
+#network.disconnected {
+    color: @red;
+}
+
+#network.ethernet {
+    color: @teal;
+}
+
+/* ── Раскладка ───────────────────────────────────────────────────── */
+#language {
+    color: @lavender;
+    padding: 0 10px;
+    background: @mantle;
+    margin: 4px 2px;
+    border-radius: 6px;
+}
+
+/* ── Tray ────────────────────────────────────────────── */
+#tray > .passive {
+    -gtk-icon-effect: dim;
+}
+
+#tray > .needs-attention {
+    -gtk-icon-effect: highlight;
+    background-color: @red;
+}
+
+tooltip {
+    background: @surface0;
+    color: @text;
+    border: 1px solid @surface1;
+    border-radius: 6px;
+}
