@@ -176,9 +176,9 @@ bindsym --locked --to-code XF86MonBrightnessUp exec brightnessctl set 5%+
 #  Shift+Print — текущий монитор → файл + буфер обмена
 #  Ctrl+Print  — активное окно → файл + буфер обмена
 # ══════════════════════════════════════════════════════════════════
-bindsym --to-code Print exec mkdir -p $HOME/Pictures/Screenshots && grim -g "$(slurp -d)" - | tee "$HOME/Pictures/Screenshots/$(date +%Y-%m-%d_%H-%M-%S).png" | wl-copy && notify-send -i camera "Screenshot" "Область сохранена"
-bindsym --to-code Shift+Print exec mkdir -p $HOME/Pictures/Screenshots && grim -o "$(swaymsg -t get_outputs | python3 -c "import sys,json; outputs=[o for o in json.load(sys.stdin) if o['focused']]; print(outputs[0]['name'] if outputs else 'DP-1')")" - | tee "$HOME/Pictures/Screenshots/$(date +%Y-%m-%d_%H-%M-%S)_monitor.png" | wl-copy && notify-send -i camera "Screenshot" "Монитор сохранён"
-bindsym --to-code Ctrl+Print exec mkdir -p $HOME/Pictures/Screenshots && grim -g "$(swaymsg -t get_tree | python3 -c "import sys,json; nodes=[n for o in json.load(sys.stdin)['nodes'] for w in o.get('nodes',[]) for n in w.get('nodes',[]) if n.get('focused')]; r=nodes[0]['rect']; print(f\"{r['x']},{r['y']} {r['width']}x{r['height']}\")")" - | tee "$HOME/Pictures/Screenshots/$(date +%Y-%m-%d_%H-%M-%S)_window.png" | wl-copy && notify-send -i camera "Screenshot" "Окно сохранено"
+bindsym --to-code Print       exec ~/.config/sway/screenshot.sh area
+bindsym --to-code Shift+Print exec ~/.config/sway/screenshot.sh output
+bindsym --to-code Ctrl+Print  exec ~/.config/sway/screenshot.sh window
 
 # ══════════════════════════════════════════════════════════════════
 #  Утилиты

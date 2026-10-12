@@ -160,7 +160,8 @@ sway
 ├── sway/
 │   ├── config          # основной конфиг
 │   ├── term.sh         # скрипт запуска терминала (fastfetch + zsh)
-│   └── gaps-toggle.sh  # переключение отступов ($mod+G)
+│   ├── gaps-toggle.sh  # переключение отступов ($mod+G)
+│   └── screenshot.sh   # скриншоты (Print / Shift+Print / Ctrl+Print)
 ├── waybar/
 │   ├── config          # конфиг панели
 │   ├── style.css       # стили (Catppuccin Mocha)
