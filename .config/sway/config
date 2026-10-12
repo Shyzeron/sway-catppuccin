@@ -33,8 +33,7 @@ smart_gaps on
 smart_borders on
 
 # $mod+G — переключить отступы
-bindsym --to-code $mod+g exec ~/.config/sway/gaps-toggle.shr current set 0 && swaymsg gaps outer current set 0 && notify-send "Gaps" "Отступы выключены"; \
-    fi
+bindsym --to-code $mod+g exec ~/.config/sway/gaps-toggle.sh
 
 # Цвета рамок (Catppuccin Mocha)
 # class                 border    bg        text      indicator child_border

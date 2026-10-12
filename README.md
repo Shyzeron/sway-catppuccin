@@ -25,31 +25,15 @@ sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/too
 ### 2. Разложить файлы
 
 ```bash
-# Sway
-mkdir -p ~/.config/sway
-cp config ~/.config/sway/config
-cp term.sh ~/.config/sway/term.sh
-chmod +x ~/.config/sway/term.sh
-
-# Waybar
-mkdir -p ~/.config/waybar/scripts
-cp waybar-config ~/.config/waybar/config
-cp waybar-style.css ~/.config/waybar/style.css
-cp gpu.sh ~/.config/waybar/scripts/gpu.sh
-chmod +x ~/.config/waybar/scripts/gpu.sh
-
-# Foot
-mkdir -p ~/.config/foot
-cp foot.ini ~/.config/foot/foot.ini
-
-# Fuzzel
-mkdir -p ~/.config/fuzzel
-cp fuzzel-config.txt ~/.config/fuzzel/fuzzel.ini
-
-# Mako
-mkdir -p ~/.config/mako
-cp mako-config.txt ~/.config/mako/config
+git clone https://github.com/Shyzeron/sway-catppuccin.git
+cd sway-catppuccin
+./install.sh
 ```
+
+Скрипт копирует всё из `.config/` репозитория в `~/.config/`. Если у тебя уже есть конфиги
+sway/waybar/foot/fuzzel/mako, они будут сохранены рядом как `<имя>.bak-<дата>`.
+
+Вручную можно так: `cp -r .config/. ~/.config/`
 
 ### 3. Настроить мониторы
 
@@ -175,12 +159,14 @@ sway
 ~/.config/
 ├── sway/
 │   ├── config          # основной конфиг
-│   └── term.sh         # скрипт запуска терминала (fastfetch + zsh)
+│   ├── term.sh         # скрипт запуска терминала (fastfetch + zsh)
+│   └── gaps-toggle.sh  # переключение отступов ($mod+G)
 ├── waybar/
 │   ├── config          # конфиг панели
 │   ├── style.css       # стили (Catppuccin Mocha)
 │   └── scripts/
-│       └── gpu.sh      # мониторинг GPU
+│       ├── gpu.sh      # мониторинг GPU
+│       └── distro.sh   # иконка дистрибутива
 ├── foot/
 │   └── foot.ini        # конфиг терминала
 ├── fuzzel/
