@@ -2,11 +2,15 @@
 #  Sway config — Catppuccin Mocha
 #  Автозапуск
 # ══════════════════════════════════════════════════════════════════
+# Сначала передаём WAYLAND_DISPLAY и др. в systemd/dbus — иначе порталы
+# и трей, к которым обращается waybar, стартуют без нужного окружения
+include /etc/sway/config.d/*
+
 exec_always autotiling
 exec_always pkill -x mako; mako
 exec_always pkill -x wl-paste; wl-paste --watch cliphist store
 exec_always pkill -x wlsunset; wlsunset -l 55.75 -L 37.62
-exec_always killall -q waybar; sleep 0.5 && waybar
+exec_always ~/.config/waybar/launch.sh
 
 # ══════════════════════════════════════════════════════════════════
 #  Переменные
@@ -186,4 +190,3 @@ bindsym --to-code Ctrl+Print  exec ~/.config/sway/screenshot.sh window
 bindsym --to-code $mod+Shift+v exec cliphist list | fuzzel --dmenu | cliphist decode | wl-copy
 bindsym --to-code $mod+Shift+b exec pkill -SIGUSR1 waybar
 
-include /etc/sway/config.d/*

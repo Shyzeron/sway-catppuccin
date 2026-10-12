@@ -159,12 +159,13 @@ sway
 ~/.config/
 ├── sway/
 │   ├── config          # основной конфиг
-│   ├── term.sh         # скрипт запуска терминала (fastfetch + zsh)
+│   ├── term.sh         # скрипт запуска терминала (fastfetch + zsh, без zsh — sh)
 │   ├── gaps-toggle.sh  # переключение отступов ($mod+G)
 │   └── screenshot.sh   # скриншоты (Print / Shift+Print / Ctrl+Print)
 ├── waybar/
 │   ├── config          # конфиг панели
 │   ├── style.css       # стили (Catppuccin Mocha)
+│   ├── launch.sh       # запуск waybar с перезапуском при падении
 │   └── scripts/
 │       ├── gpu.sh      # мониторинг GPU
 │       └── distro.sh   # иконка дистрибутива
