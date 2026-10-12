@@ -4,7 +4,7 @@
 
 ---
 
-![Sway Catppuccin](screenshots/desktop.png)
+![Sway Catppuccin](screenshots/sc1.png)
 
 ## Установка
 
