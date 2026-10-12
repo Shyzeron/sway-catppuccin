@@ -4,6 +4,8 @@
 
 ---
 
+![Sway Catppuccin](screenshots/desktop.png)
+
 ## Установка
 
 ### 1. Пакеты
